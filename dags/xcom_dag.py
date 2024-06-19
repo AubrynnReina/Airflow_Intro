@@ -8,8 +8,8 @@ def _t1(ti):
     ti.xcom_push(key='task 1', value=13)
     
  
-def _t2():
-    None
+def _t2(ti):
+    print(ti.xcom_pull(key='task 1', task_ids='t1'))
  
 with DAG("xcom_dag", start_date=datetime(2022, 1, 1), 
     schedule_interval='@daily', catchup=False) as dag:
