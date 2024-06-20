@@ -73,6 +73,16 @@ x-airflow-common:
       condition: service_healthy
 
 services:
+
+  elastic:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.3.3
+    environment:
+      - "xpack.security.enabled=false"
+      - "discovery.type=single-node"
+      - "ES_JAVA_OPTS=-Xms750m -Xmx750m"
+    ports:
+      - 9200:9200
+
   postgres:
     image: postgres:13
     environment:
